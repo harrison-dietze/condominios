@@ -8,6 +8,17 @@ public class Morador {
     private String cpf;
     private double renda;
 
+    
+
+    public Morador(String nome, int idade, char sexo, String rg, String cpf, double renda) {
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.renda = renda;
+    }
+
     public String getNome() {
         return nome;
     }

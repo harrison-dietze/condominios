@@ -29,7 +29,7 @@ public class Condominio {
                 "\n Nome: "+ nome +
                 "\n Cidade: "+ cidade +
                 "\n Bairro: " + bairro +
-                "\n Edificios: "+ edificios.stream().map(e -> e.toString()).collect(Collectors.joining());
+                "\n Edificios: "+ edificios.stream().map(e -> e.toString()).collect(Collectors.toList());
 
     }
 }

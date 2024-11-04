@@ -2,6 +2,7 @@
 import factories.condominio.CondominioFactoryImpl;
 import factories.edificio.EdificioFactory;
 import factories.edificio.EdificioFactoryImpl;
+import factories.morador.MoradorFactoryImpl;
 import factories.apartamento.ApartamentoFactory;
 import factories.apartamento.ApartamentoLuxoFactory;
 import factories.apartamento.ApartamentoPadraoFactory;
@@ -37,7 +38,7 @@ public class Main {
             }
 
             System.out.println("Lista atual de condomínios: ");
-            listaCondominios.forEach(c -> c.toString());
+            listaCondominios.forEach(c -> System.out.println(c.toString()));
         } while (!fechar);
     }
 
@@ -86,6 +87,19 @@ public class Main {
         return pinturas;
     }
 
+    private static List<Morador> criarMoradoresPelaFabrica() {
+        List<Morador> moradores = new ArrayList<Morador>();
+
+        int numeroMoradores = handler.getNumeroElementos("morador");
+
+        for (int i = 0; i < numeroMoradores; i++) {
+            System.out.println("Dados do morador " + (i + 1));
+
+            moradores.add(receberDadosMorador());
+        }
+        return moradores;
+    }
+
 
     private static Pintura receberDadosPintura() {
         return  new PinturaFactoryImpl().criarPintura(handler.getCor(), handler.getFace());
@@ -96,7 +110,7 @@ public class Main {
     }
 
     private static Morador receberDadosMorador() {
-        return  new MoradorFactoryImpl().criarMorador(handler.getNome("morador"), handler.getCPF(), handler.getRG(), handler.getRenda());
+        return  new MoradorFactoryImpl().criarMorador(handler.getNome("morador"), handler.getIdade(), handler.getSexo(), handler.getRG(), handler.getCPF(), handler.getRenda());
     }
 
     private static Edificio receberDadosEdificio() {
@@ -114,6 +128,6 @@ public class Main {
                 new ApartamentoPadraoFactory(handler.getTipoPiso(), handler.getTipoArmarios());
 
 
-        return apartamentoFactory.criarApartamento(handler.getNumero("apartamento"), handler.getNumeroAndar(), new ArrayList<>());
+        return apartamentoFactory.criarApartamento(handler.getNumero("apartamento"), handler.getNumeroAndar(), criarMoradoresPelaFabrica());
     }
 }

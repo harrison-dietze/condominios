@@ -42,6 +42,7 @@ public class Handler {
 
     public String getCor() {
         System.out.println("Insira a cor: ");
+        scanner.nextLine();
         return scanner.nextLine();
     }
 
@@ -93,5 +94,35 @@ public class Handler {
                             "\n 1 - Luxo" +
                             "\n 2 - Padrão");
         return scanner.nextInt() == 1 ? "Luxo" : "Padrao";
+    }
+
+    public int getIdade() {
+        System.out.println("Insira a idade: ");
+        return scanner.nextInt();
+    }
+
+    public char getSexo() {
+            System.out.println("Selecione o gênero: " +
+                                "\n 1 - Masculino" +
+                                "\n 2 - Feminino");
+            return scanner.nextInt() == 1 ? 'M' : 'F';
+        }
+
+    public String getRG() {
+        System.out.println("Insira o RG: ");
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    public String getCPF() {
+        System.out.println("Insira o CPF: ");
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    public Double getRenda() {
+        System.out.println("Insira a renda: ");
+        scanner.nextLine();
+        return scanner.nextDouble();
     }
 }
