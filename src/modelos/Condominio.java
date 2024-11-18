@@ -37,4 +37,10 @@ public class Condominio {
         return numero;
     }
 
+    public List<Edificio> getEdificios() {
+        return edificios;
+    }
+
+    
+
 }

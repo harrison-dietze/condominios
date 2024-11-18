@@ -39,4 +39,8 @@ public abstract class Apartamento {
                 "\n Número: " + numero +
                 "\n Lista de moradores: " + listaMoradores.stream().map(e -> e.toString()).collect(Collectors.joining());
     }
+    
+    public int getNumero() {
+        return numero;
+    }
 }

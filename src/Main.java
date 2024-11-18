@@ -58,7 +58,103 @@ public class Main {
         for (int i = 0; i < listaCondominios.size(); i++) {
             if(numeroCondominio == listaCondominios.get(i).getNumero()) {
                 encontrado = true;
-                listaCondominios.set(i, criarCondominioPelaFabrica());
+                System.out.println("O que você deseja fazer? \n "+
+                                   "1 - Recriar condomínio \n "+
+                                   "2 - Editar edifício do condomínio \n" +
+                                   "3 - Excluir edifício do condomínio ");
+
+                int opcao = sc.nextInt();
+
+                switch (opcao) {
+                    case 1:
+                        listaCondominios.set(i, criarCondominioPelaFabrica());
+                    case 2: 
+                       editarEdificio(listaCondominios.get(i));
+                    case 3: 
+                        // TODO
+                       excluirCondominio(listaCondominios.get(i));
+                } 
+
+               
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Condomínio não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void editarEdificio(Condominio condominio) {
+        System.out.println("Selecione o número do edifício a ser editado: ");
+
+        int numeroEdifício = sc.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < condominio.getEdificios().size(); i++) {
+            if(numeroEdifício == condominio.getEdificios().get(i).getNumero()) {
+                encontrado = true;
+                System.out.println("O que você deseja fazer? \n" +
+                                    "1 - Recriar edifício \n" +
+                                    "2 - Editar apartamento do edifício \n" +
+                                    "3 - Editar pintura do edifício \n" +
+                                    "4 - Excluir apartamemto do edifício \n" +
+                                    "5 - Excluir pintura do edifício");
+
+                int opcao = sc.nextInt();
+
+                switch (opcao) {
+                    case 1:
+                        condominio.getEdificios().set(i, receberDadosEdificio());
+                    case 2: 
+                        editarApartamento(condominio.getEdificios().get(i));
+                    case 3: 
+                        // TODO
+                        editarPintura(condominio.getEdificios().get(i));
+                    case 4:
+                        // TODO 
+                        excluirApartamento(condominio.getEdificios().get(i));
+                    case 5: 
+                        // TODO
+                        excluirPintura(condominio.getEdificios().get(i));
+                } 
+
+               
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Condomínio não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void editarApartamento(Edificio edificio) {
+        System.out.println("Selecione o número do apartamento a ser editado: ");
+
+        int numeroEdifício = sc.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < edificio.getApartamentos().size(); i++) {
+            if(numeroEdifício == edificio.getApartamentos().get(i).getNumero()) {
+                encontrado = true;
+                System.out.println("O que você deseja fazer? \n" +
+                                    "1 - Recriar apartamento \n" +
+                                    "2 - Editar morador do apartamento \n" +
+                                    "3 - Excluir morador do apartamento ");
+
+                int opcao = sc.nextInt();
+
+                switch (opcao) {
+                    case 1:
+                        edificio.getApartamentos().set(i, receberDadosApartamento());
+                    case 2: 
+                        // TODO
+                        editarApartamento(edificio.getApartamentos().get(i));
+                    case 3: 
+                        // TODO
+                        editarPintura(edificio.getApartamentos().get(i));
+                } 
+
+               
             }
         }
         if (!encontrado) {
