@@ -29,8 +29,8 @@ public class Edificio {
 
 
         return  "\n Número: " + numero +
-                "\n Número de andares:  "+ numeroAndares +
-                "\n Pinturas: " + listaPinturas.stream().map(p -> p.toString()).collect(Collectors.joining()) +
+                "\n Número de andares:  " + numeroAndares +
+                "\n Pintura: " + listaPinturas.stream().map(p -> p.toString()).collect(Collectors.joining()) +
                 "\n Apartamentos: " + listaApartamentos.stream().map(a -> a.toString()).collect(Collectors.joining());
 
     }

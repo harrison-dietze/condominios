@@ -22,25 +22,51 @@ public class Main {
 
     private static final Handler handler = new Handler();
 
+    private static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
         boolean fechar = false;
         do {
             System.out.println("Selecione a opção desejada: \n 1 -Criar condomínio ");
 
-            Scanner sc = new Scanner(System.in);
             int opcao = sc.nextInt();
 
-            if (opcao == 1) {
-                listaCondominios.add(criarCondominioPelaFabrica());
-            }
-            else {
-                fechar = true;
+            switch (opcao) {
+                case 1:
+                    listaCondominios.add(criarCondominioPelaFabrica());
+                    break;
+                case 2:
+                    editarCondominio();
+                    break;
+                default:
+                    fechar = true;
+                    break;
+
             }
 
             System.out.println("Lista atual de condomínios: ");
             listaCondominios.forEach(c -> System.out.println(c.toString()));
         } while (!fechar);
     }
+
+    private static void editarCondominio() {
+        System.out.println("Selecione o número do condomínio a ser editado: ");
+
+        int numeroCondominio = sc.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < listaCondominios.size(); i++) {
+            if(numeroCondominio == listaCondominios.get(i).getNumero()) {
+                encontrado = true;
+                listaCondominios.set(i, criarCondominioPelaFabrica());
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Condomínio não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
 
     private static Condominio criarCondominioPelaFabrica() {
        return receberDadosCondominio();

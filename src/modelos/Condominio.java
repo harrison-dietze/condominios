@@ -32,4 +32,9 @@ public class Condominio {
                 "\n Edificios: "+ edificios.stream().map(e -> e.toString()).collect(Collectors.toList());
 
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
 }
