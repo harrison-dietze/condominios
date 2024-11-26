@@ -70,9 +70,8 @@ public class Main {
                         listaCondominios.set(i, criarCondominioPelaFabrica());
                     case 2: 
                        editarEdificio(listaCondominios.get(i));
-                    case 3: 
-                        // TODO
-                       excluirCondominio(listaCondominios.get(i));
+                    case 3:
+                       excluirEdificio(listaCondominios.get(i));
                 } 
 
                
@@ -107,22 +106,19 @@ public class Main {
                         condominio.getEdificios().set(i, receberDadosEdificio());
                     case 2: 
                         editarApartamento(condominio.getEdificios().get(i));
-                    case 3: 
-                        // TODO
+                    case 3:
                         editarPintura(condominio.getEdificios().get(i));
                     case 4:
-                        // TODO 
                         excluirApartamento(condominio.getEdificios().get(i));
-                    case 5: 
-                        // TODO
+                    case 5:
                         excluirPintura(condominio.getEdificios().get(i));
-                } 
+                }
 
                
             }
         }
         if (!encontrado) {
-            System.out.println("Condomínio não encontrado!: ");
+            System.out.println("Edifício não encontrado!: ");
             editarCondominio();
         }
     }
@@ -130,11 +126,11 @@ public class Main {
     private static void editarApartamento(Edificio edificio) {
         System.out.println("Selecione o número do apartamento a ser editado: ");
 
-        int numeroEdifício = sc.nextInt();
+        int numeroApartamemto = sc.nextInt();
         boolean encontrado = false;
 
         for (int i = 0; i < edificio.getApartamentos().size(); i++) {
-            if(numeroEdifício == edificio.getApartamentos().get(i).getNumero()) {
+            if(numeroApartamemto == edificio.getApartamentos().get(i).getNumero()) {
                 encontrado = true;
                 System.out.println("O que você deseja fazer? \n" +
                                     "1 - Recriar apartamento \n" +
@@ -146,19 +142,143 @@ public class Main {
                 switch (opcao) {
                     case 1:
                         edificio.getApartamentos().set(i, receberDadosApartamento());
-                    case 2: 
-                        // TODO
-                        editarApartamento(edificio.getApartamentos().get(i));
-                    case 3: 
-                        // TODO
-                        editarPintura(edificio.getApartamentos().get(i));
-                } 
-
-               
+                    case 2:
+                        editarMorador(edificio.getApartamentos().get(i));
+                    case 3:
+                        excluirMorador(edificio.getApartamentos().get(i));
+                }
             }
         }
         if (!encontrado) {
-            System.out.println("Condomínio não encontrado!: ");
+            System.out.println("Apartamento não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void editarMorador(Apartamento apartamento) {
+        System.out.println("Selecione o CPF do morador a ser editado: ");
+
+        String cpfMorador = sc.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < apartamento.getListaMoradores().size(); i++) {
+            if(cpfMorador.equals(apartamento.getListaMoradores().get(i).getCpf())) {
+                encontrado = true;
+                System.out.println("O que você deseja fazer? \n" +
+                        "1 - Substituir dados do morador");
+
+                int opcao = sc.nextInt();
+
+                switch (opcao) {
+                    case 1:
+                        apartamento.getListaMoradores().set(i, receberDadosMorador());
+                }
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Morador não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void editarPintura(Edificio edificio) {
+        System.out.println("Selecione a face da pintura a ser editado: ");
+
+        String face = sc.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < edificio.getPinturas().size(); i++) {
+            if(face.equals(edificio.getPinturas().get(i).getFace())) {
+                encontrado = true;
+                System.out.println("O que você deseja fazer? \n" +
+                        "1 - Substituir dados do morador");
+
+                int opcao = sc.nextInt();
+
+                switch (opcao) {
+                    case 1:
+                        edificio.getPinturas().set(i, receberDadosPintura());
+                }
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Face não encontrada!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void excluirPintura(Edificio edificio) {
+        System.out.println("Selecione a face da pintura a ser excluída: ");
+
+        String face = sc.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < edificio.getPinturas().size(); i++) {
+            if(face.equals(edificio.getPinturas().get(i).getFace())) {
+                encontrado = true;
+
+                edificio.getPinturas().remove(i);
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Face não encontrada!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void excluirEdificio(Condominio condominio) {
+        System.out.println("Selecione o número do edifício a ser excluído: ");
+
+        int numeroEdificio = sc.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < condominio.getEdificios().size(); i++) {
+            if(numeroEdificio == condominio.getEdificios().get(i).getNumero()) {
+                encontrado = true;
+
+                condominio.getEdificios().remove(i);
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Edifício não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void excluirApartamento(Edificio edificio) {
+        System.out.println("Selecione o número do apartamento a ser excluído: ");
+
+        int numeroApartamento = sc.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < edificio.getApartamentos().size(); i++) {
+            if(numeroApartamento == edificio.getApartamentos().get(i).getNumero()) {
+                encontrado = true;
+
+                edificio.getApartamentos().remove(i);
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Edifício não encontrado!: ");
+            editarCondominio();
+        }
+    }
+
+    private static void excluirMorador(Apartamento apartamento) {
+        System.out.println("Selecione o CPF do morador a ser excluído: ");
+
+        String cpf = sc.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < apartamento.getListaMoradores().size(); i++) {
+            if(cpf.equals(apartamento.getListaMoradores().get(i).getCpf())) {
+                encontrado = true;
+
+                apartamento.getListaMoradores().remove(i);
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Edifício não encontrado!: ");
             editarCondominio();
         }
     }

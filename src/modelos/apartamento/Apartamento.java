@@ -16,7 +16,7 @@ public abstract class Apartamento {
         return somaRenda / getListaMoradores().size();
     }
 
-    private List<Morador> getListaMoradores() {
+    public List<Morador> getListaMoradores() {
         return this.listaMoradores;
     };
 
